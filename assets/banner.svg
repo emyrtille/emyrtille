@@ -1,0 +1,51 @@
+<svg width="380" height="72" viewBox="0 0 380 72" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .txt {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        fill: #1f2328;
+      }
+      .cur {
+        fill: #1f2328;
+        animation: blink 0.8s step-end infinite;
+      }
+      @media (prefers-color-scheme: dark) {
+        .txt { fill: #e6edf3; }
+        .cur { fill: #e6edf3; }
+      }
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+    </style>
+    <clipPath id="reveal">
+      <rect height="72" y="0" x="0">
+        <animate
+          attributeName="width"
+          values="0;270;270;0;0"
+          keyTimes="0;0.45;0.75;0.9;1"
+          dur="4s"
+          repeatCount="indefinite"
+        />
+      </rect>
+    </clipPath>
+  </defs>
+
+  <!-- Text starts at x=10 and spans textLength=260, so it ends at x=270.
+       The clipPath rect animates width 0→270 to reveal the full text. -->
+  <text class="txt" x="10" y="54"
+        textLength="260" lengthAdjust="spacingAndGlyphs"
+        clip-path="url(#reveal)">Hello &#x1F44B;</text>
+
+  <!-- Blinking cursor that tracks the text end (x=10+260=270) -->
+  <rect class="cur" y="8" width="3" height="54" rx="1">
+    <animate
+      attributeName="x"
+      values="10;270;270;10;10"
+      keyTimes="0;0.45;0.75;0.9;1"
+      dur="4s"
+      repeatCount="indefinite"
+    />
+  </rect>
+</svg>
